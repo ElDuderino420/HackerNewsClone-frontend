@@ -16,7 +16,7 @@ RUN npm install
 
 # Bundle app source
 COPY . /usr/src/app
-RUN webpack --config webpack.config.js
+RUN npm run build
 
 CMD ["serve", "-s", "/usr/src/app/public/"]
 
