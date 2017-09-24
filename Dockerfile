@@ -12,7 +12,7 @@ WORKDIR /usr/src/app
 
 # Install app dependencies
 COPY package.json /usr/src/app/
-RUN npm install
+RUN npm config set registry http://registry.npmjs.org/ && npm install
 
 # Bundle app source
 COPY . /usr/src/app
