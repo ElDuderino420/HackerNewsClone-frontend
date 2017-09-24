@@ -12,10 +12,8 @@ RUN npm config set registry http://registry.npmjs.org/ && npm install
 
 # Bundle app source
 COPY . /usr/src/app
-RUN npm install webpack -g
-RUN npm run build
 
 RUN npm install serve -g
-CMD ["serve", "-s", "/usr/src/app/publsic/"]
+CMD ["serve", "-s", "/usr/src/app/public/"]
 
 EXPOSE 5000
