@@ -22416,12 +22416,12 @@ var HelloWorld = function HelloWorld() {
     _react2.default.createElement(
       'h1',
       null,
-      'Hello World'
+      'Hacker News'
     ),
     _react2.default.createElement(
       'p',
       null,
-      'Welcome to my world'
+      'Hacking the News'
     )
   );
 };
