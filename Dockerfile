@@ -1,22 +1,23 @@
 FROM node:boron
 
-# Install and configure `serve`.
-RUN npm install -g serve
-CMD serve -s build
-EXPOSE 5000
+ENV NPM_CONFIG_LOGLEVEL warn
+ENV NODE_ENV=production
 
-# Create app directory
+RUN npm install webpack -g
+RUN npm install serve -g
+
+
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-# Install all dependencies of the current project.
+# Install app dependencies
 COPY package.json /usr/src/app/
-COPY npm-shrinkwrap.json /usr/src/app/
 RUN npm install
 
-# Copy all local files into the image.
-COPY . /usr/src/app/
+# Bundle app source
+COPY . /usr/src/app
+RUN webpack --config webpack.config.js
 
-# Build for production.
-RUN npm run build --production
+CMD ["serve", "-s", "/usr/src/app/public/"]
 
+EXPOSE 5000
