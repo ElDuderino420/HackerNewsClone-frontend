@@ -20,7 +20,8 @@
   "homepage": "https://github.com/ElDuderino420/HackerNewsClone-frontend#readme",
   "dependencies": {
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "webpack": "^3.6.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -30,7 +31,6 @@
     "css-loader": "^0.28.7",
     "path": "^0.12.7",
     "style-loader": "^0.18.2",
-    "webpack": "^3.6.0",
     "webpack-dev-server": "^2.8.2"
   }
 }
