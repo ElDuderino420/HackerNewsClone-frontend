@@ -14,6 +14,6 @@ RUN npm config set registry http://registry.npmjs.org/ && npm install
 COPY . /usr/src/app
 
 RUN npm install serve -g
-CMD ["serve", "-s", "/usr/src/app/public/"]
+CMD ["npm", "start"]
 
 EXPOSE 5000

@@ -1,36 +1,22 @@
 {
   "name": "hackernewsclone-frontend",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "description": "Haxor news for leet people",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server",
-    "build": "webpack --config webpack.config.js"
+    "start": "serve -s public"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ElDuderino420/HackerNewsClone-frontend.git"
   },
   "author": "",
-  "license": "MIT",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/ElDuderino420/HackerNewsClone-frontend/issues"
   },
   "homepage": "https://github.com/ElDuderino420/HackerNewsClone-frontend#readme",
   "dependencies": {
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1"
-  },
-  "devDependencies": {
-    "webpack": "^3.6.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "css-loader": "^0.28.7",
-    "path": "^0.12.7",
-    "style-loader": "^0.18.2",
-    "babel-cli": "^6.26.0",    
-    "webpack-dev-server": "^2.8.2"
+    "serve": "^6.2.0"
   }
 }

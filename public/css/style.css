@@ -1,0 +1,38 @@
+
+.Site {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+  
+  .Site-content {
+    flex: 1;
+  }
+  footer {
+    color: white;
+    bottom: 0;
+    width: 100%;
+    background-color: #00212c;
+    position: relative;
+    left: 0;
+    overflow:hidden;
+    padding: 10px 15px 10px 15px;
+}
+footer ul{
+    width:200px;
+    list-style-type: none;
+    margin: 5px 5px 5px 5px;
+}
+.footer_item li{
+    border-bottom: 1px solid #e7e6e6;
+}
+footer li {
+    display:block;
+    padding:10px 10px 10px 12px;
+    position: relative;
+}
+.footer_parts {
+    width:30%;
+    display:inline-block;
+
+}
