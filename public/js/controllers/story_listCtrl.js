@@ -1,5 +1,5 @@
 angular.module('haxorNews')
-.controller('story_listCtrl', function($scope) {
+.controller('story_listCtrl', function($scope,$http) {
     $scope.message = 'Motherfucking search page.';
     $scope.availableFag = {};
     $scope.availableFag.temp = [
