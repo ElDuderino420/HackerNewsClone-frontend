@@ -1,1 +1,75 @@
-<h1>Haxor news story list</h1>
+
+<div style="margin-top:50px" class="container">
+    
+        <div class="input-group">
+    
+            <span class="input-group-addon" title="Subject" id="subjectLabel">Subject</span>
+    
+            <select  id="searchbygenerals_currency" name="searchbygenerals[currency]" class="form-control" ng-model="filterstuff.fag.name">
+                <option ng-repeat="fag in availableFag.temp" value="{{fag.name}}" > {{fag.name}}</option>
+            </select>
+    
+            <span class="input-group-addon" title="Level" id="levelLabel">Grade</span>
+    
+            <select id="searchbygenerals_currency3" name="searchbygenerals[currency]" class="form-control" ng-model="filterstuff.fag.level">
+                <option ng-repeat="grade in availableFag.grade" value="{{grade}}"> {{grade}}</option>
+            </select>
+            </div>
+        <div class="input-group">
+    
+            <span class="input-group-addon" title="Level" id="levelLabel3">Zipcode</span>
+            <input type="text" id="searchZipcode" name="searchZipcode" class="form-control" ng-model="filterstuff.zipcode">
+    
+            <span class="input-group-addon">Display Name</span>
+            <input type="text" id="searchtext" name="searchtext" class="form-control" ng-model="filterstuff.displayName">
+            <span class="input-group-btn" id="reset">
+                <button ng-click="resetSearch()" type="button" class="btn btn-secondary">Reset</button>
+            </span>
+    
+        </div>
+        <br>
+        <hgroup class="mb20">
+            <h1>Search Results</h1>
+            <h2 class="lead"><strong class="text-danger">{{(list|filter:filterstuff).length}}</strong> results were found </h2>
+        </hgroup>
+    
+        <section class="col-xs-12 col-sm-6 col-md-12">
+            <article ng-repeat="user in list | filter:filterstuff" class="search-result row">
+                <div class="col-xs-12 col-sm-12 col-md-3" style="height:256px;overflow:hidden">
+    
+                    <a href="#profile/{{user.displayName}}" title="Go to {{user.displayName}}s profile" class="thumbnail">
+                        <img src="{{user.profilePic != null ? user.profilePic : '../pics/default.png'}}" onerror="if (this.src != '../pics/default.png') this.src = '../pics/default.png';" />
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2" style="max-height:256px;overflow:hidden">
+                    <ul class="meta-search">
+                        <li ><span>{{user.email}}</span></li>
+                        <li ng-show="user.age != null ? true : false"><span>{{user.age}} yr</span></li>
+                        <li ng-show="user.zipcode != null ? true : false"><i class="fa fa-map-marker"></i> <span>{{user.zipcode}}</span></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-7" style="max-height:256px;overflow:hidden">
+                    <h3><a href="#profile/{{user.displayName}}" title="">{{user.displayName}}</a></h3>
+    
+                    <span ng-repeat="fag in user.fag" class="ng-scope">
+                    <span class="ui-select-match-item btn btn-default btn-xs" tabindex="-1" type="button" >
+                        <span >
+                            <span class="ng-binding ng-scope">{{fag.name}},{{fag.level}}</span>
+                        </span>
+                    </span>
+                </span>
+                    <br><br>
+                    <span ng-repeat="spec in user.specialities" class="ng-scope">
+                    <span class="ui-select-match-item btn btn-default btn-xs" tabindex="-1" type="button" >
+                        <span >
+                            <span class="ng-binding ng-scope" title="{{spec.popup}}">{{spec.name}}</span>
+                        </span>
+                    </span>
+                </span>
+                </div>
+                <span class="clearfix border"></span>
+            </article>
+    
+        </section>
+    </div>
+    
