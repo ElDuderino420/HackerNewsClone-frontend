@@ -28,14 +28,14 @@ angular.module('haxorNews', ['ngRoute'])
             })
 
             // story routes
-            .when('/stories!', {
-                templateUrl: 'pages/story_list.html',
-                controller: 'story_listCtrl'
-
-            })
             .when('/story/:storyId', {
                 templateUrl: 'pages/story_single.html',
                 controller: 'story_singleCtrl'
+
+            })
+            .when('/newpost', {
+                templateUrl: 'pages/newPost.html',
+                controller: 'newPostCtrl'
 
             })
 

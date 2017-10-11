@@ -5,6 +5,34 @@
     <meta name=viewport content="width=device-width, initial-scale=1">
     <title>Haxor News</title>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <link async rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link async rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-sanitize.min.js"></script>
+
+    <!-- custom scripts, controls asf. !-->
+    
+    <script src="js/mainScript.js"></script>
+    <script src="js/controllers/mainCtrl.js"></script>
+    <script src="js/controllers/homeCtrl.js"></script>
+    <script src="js/controllers/story_singleCtrl.js"></script>
+    <script src="js/controllers/newPostCtrl.js"></script>
+    <script src="js/controllers/user/loginCtrl.js"></script>
+    <script src="js/controllers/user/registerCtrl.js"></script>
+    <script src="js/controllers/user/profileCtrl.js"></script>
+    <script src="js/controllers/user/profileEditCtrl.js"></script>
+    <script src="js/controllers/footer/aboutCtrl.js"></script>
+    <script src="js/controllers/footer/contactCtrl.js"></script>
+    <script src="js/controllers/footer/loanBroker7Ctrl.js"></script>
+    
+
+
+
+    <!-- css stuffs !-->
+    <link async rel="stylesheet" href="css/style.css">
 
 </head>
 <body class="Site" ng-app="haxorNews" ng-controller="mainCtrl">
@@ -18,7 +46,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li ng-show="!currentUser"><a href="#register"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up Here!!!</a></li>
                     <li><a href="#/"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a href="#stories!"><i class="fa fa-search"></i> Stories!</a></li>
+                    <li><a href="#newpost"><i class="fa fa-search" ></i> New Post!</a></li>
                     <li ng-show="!currentUser"><a href="#login"><i class="fa fa-sign-in"></i> Login</a></li>
                     <li ng-show="currentUser"><a href="#profile/{{currentUser.displayName}}"><i class="fa fa-user"></i> My Profile</a></li>
                     <li ng-show="currentUser"><a href="#/" ng-click="logout()"><i class="fa fa-sign-out"></i> Sign out</a></li>
@@ -55,33 +83,7 @@
                 Tlf: 40219259<br>
             </p>
         </div>
-        <script deter src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-        <link async rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-        <link async rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-    
-        <script deter src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-route.min.js"></script>
-        <script deter src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
-        <script deter src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-sanitize.min.js"></script>
-    
-        <!-- custom scripts, controls asf. !-->
         
-        <script deter src="js/mainScript.js"></script>
-        <script deter src="js/controllers/mainCtrl.js"></script>
-        <script deter src="js/controllers/homeCtrl.js"></script>
-        <script deter src="js/controllers/story_listCtrl.js"></script>
-        <script deter src="js/controllers/story_singleCtrl.js"></script>
-        <script deter src="js/controllers/user/loginCtrl.js"></script>
-        <script deter src="js/controllers/user/registerCtrl.js"></script>
-        <script deter src="js/controllers/user/profileCtrl.js"></script>
-        <script deter src="js/controllers/user/profileEditCtrl.js"></script>
-        <script deter src="js/controllers/footer/aboutCtrl.js"></script>
-        <script deter src="js/controllers/footer/contactCtrl.js"></script>
-        <script deter src="js/controllers/footer/loanbroker7Ctrl.js"></script>
-
-    
-    
-        <!-- css stuffs !-->
-        <link async rel="stylesheet" href="css/style.css">
     </footer>
     </body>
     
