@@ -6,7 +6,8 @@
     <title>Haxor News</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-    <link async rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    
     <link async rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-route.min.js"></script>
@@ -36,55 +37,59 @@
 
 </head>
 <body class="Site" ng-app="haxorNews" ng-controller="mainCtrl">
-    <header>
-        <nav class="navbar navbar-default bg-primary navbar_cus">
-            <div class="container">
-                <div  class="navbar-header">
-                    <a style="padding:0 0 0 0" class="navbar-brand"  href="#/"><img style="height:50px;width:148.5px" src="../pics/logo.png"></a>
-                </div>
     
-                <ul class="nav navbar-nav navbar-right">
-                    <li ng-show="!currentUser"><a href="#register"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up Here!!!</a></li>
-                    <li><a href="#/"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a href="#newpost"><i class="fa fa-search" ></i> New Post!</a></li>
-                    <li ng-show="!currentUser"><a href="#login"><i class="fa fa-sign-in"></i> Login</a></li>
-                    <li ng-show="currentUser"><a href="#profile/{{currentUser.displayName}}"><i class="fa fa-user"></i> My Profile</a></li>
-                    <li ng-show="currentUser"><a href="#/" ng-click="logout()"><i class="fa fa-sign-out"></i> Sign out</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
 
-<main class="Site-content" style="height:100%" id="main">
-    
-        <!-- angular templating -->
-        <!-- this is where content will be injected -->
-    
-        <div ng-view></div>
-    
-</main>
-
-    <footer class="footer">
-        <div class="footer_parts footer_item">
-            <ul>
-                <li><a href="#about"></i> About Us</a></li>
-                <li><a href="#contact"> Contact</a></li>
-                <li><a href="#loanbroker7"></i> LoanBroker7 showcase</a></li>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">HaxorNews</a>
+        
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#/"><i class="fa fa-home"></i> Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#newpost"><i class="fa fa-search" ></i> New Post!</a>
+            </li>
+            </ul>
+            <form class="form-inline mt-2 mt-md-1">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <ul class="navbar-nav mt-2 mt-md-0">
+                <li class="nav-item">
+                </li>
+                <li class="nav-item" ng-show="!currentUser">
+                    <a class="nav-link" href="#login"><i class="fa fa-sign-in"></i> Login</a>
+                </li>
+                <li class="nav-item" ng-show="currentUser">
+                    <a class="nav-link" href="#profile/{{currentUser.displayName}}"><i class="fa fa-user"></i> My Profile</a>
+                </li>
+                <li class="nav-item" ng-show="currentUser">
+                    <a class="nav-link" href="#/"><i class="fa fa-sign-out"></i> Sign out</a>
+                </li>
             </ul>
         </div>
-        <div class="footer_parts" style="float:right">
-            <h2>Contact Info</h2>
-            <p>
-                marco8jnv@hotmail.com <br>
-                Caucasions4Hire IVS<br>
-                Nybrovej 304, p-19<br>
-                2800 Lyngby<br>
-                CVR: Randomized_Numbers<br>
-                Tlf: 40219259<br>
-            </p>
-        </div>
-        
-    </footer>
-    </body>
+    </nav>
+
+    <!-- Begin page content -->
+    <div class="container" ng-view></div>
+
+    <footer class="footer">
+            <div class="container">
+              <span class="text-muted">
+                    <a href="#about"></i> About Us</a>
+                     |  
+                    <a href="#contact"> Contact</a>
+                     |  
+                    <a href="#loanbroker7"></i> LoanBroker7 showcase</a>
+              </span>
+            </div>
+          </footer>
+
     
-    </html>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+</body>
+    
+</html>
