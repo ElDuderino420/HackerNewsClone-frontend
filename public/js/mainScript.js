@@ -59,3 +59,7 @@ angular.module('haxorNews', ['ngRoute'])
 
             .otherwise({ redirectTo: '/' });
     })
+    .constant('API_ENDPOINT', {
+        url: 'http://188.226.152.93:3000'
+        //  For a simulator use: url: 'http://127.0.0.1:8080/api'
+    });
