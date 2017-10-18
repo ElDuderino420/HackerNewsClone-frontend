@@ -1,43 +1,41 @@
 angular.module('haxorNews')
-    .controller('registerCtrl', function ($scope, API_ENDPOINT, $http, $location) {
+    .controller('registerCtrl', function ($scope, AuthService, $location) {
         $scope.user = {
             userName: '',
             password: ''
         };
-        $scope.userNameErr = {
-            status: false,
-            msg: ""
-        };
-        $scope.setDangerText = function(){
-            $scope.dangerText = null;
-        }
+        $scope.userNameErr = null;
         $scope.remNameErr = function () {
-            $scope.userNameErr.status = false;
+            $scope.userNameErr = null;
         }
         userNameSetErr = function (status) {
-            $scope.userNameErr.status = true;
             if (status == null || status == 0) {
-                $scope.userNameErr.msg = "database crashed";
-                $scope.dangerText = "database crashed!"
+                $scope.userNameErr = "database crashed";
             }
             if (status == 666) {
-                $scope.userNameErr.msg = "Username invalid or taken";
+                $scope.userNameErr = "Username invalid or taken";
             }
             if (status == 500) {
-                $scope.usernameErr.msg = "database error";
+                $scope.usernameErr = "database error";
             }
-            
+
         }
         $scope.register = function () {
-            $http.post(API_ENDPOINT.url + "/api/user/new", $scope.user).then(function (result) {
-                console.log("Sign up Succesful");
-                $location.path('/login');
-            }, function (err) {
-                console.log(err)
-                userNameSetErr(err.status);
-
+            AuthService.register($scope.user,function(result){
+                if (result.status == 200) {
+                    console.log("register succesful");
+                    console.log(result)
+                    $location.path('/login')
+                }
+                else{
+                    console.log("something went wrong")
+                    userNameSetErr(result.status)
+                    console.log(result)
+                }
             })
-        };
+        }
+    
+
         /*$scope.signup = function(user) {
             AuthService.register(user).then(function(msg) {
                 $location.path('/login');
