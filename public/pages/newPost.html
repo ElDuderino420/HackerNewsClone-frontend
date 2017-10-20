@@ -1,14 +1,17 @@
-<h1>Haxor news new post</h1>
+<h2>Haxor news new post</h2>
 
-<h2>Register</h2>
-<form name="form" ng-submit="newPost(post)" role="form">
+<form name="form" ng-submit="newPost()" role="form">
     <div class="form-group">
-        <label for="postTitle">Post Title</label>
-        <input type="text" name="title" id="title" ng-model="post.title" class="form-control" required />
+        <label for="post_type">Post Type</label>
+        <select style="padding: 0 .75rem 0 .75rem" class="form-control" ng-model="post.post_type" name="post_type" id="post_type" ng-options="type for type in types"></select>
     </div>
     <div class="form-group">
-        <label for="posttext">Tell us your story!</label>
-        <textarea type="text" name="posttext" id="posttext" ng-model="post.posttext" class="form-control" required ></textarea>
+        <label for="post_title">Post Title</label>
+        <input type="text" name="post_title" id="post_title" ng-model="post.post_title" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="post_text">Tell us your story!</label>
+        <textarea type="text" name="post_text" id="post_text" ng-model="post.post_text" class="form-control" required ></textarea>
     </div>
     <div class="form-actions">
         <button type="submit" class="btn btn-primary">Post Story</button>
