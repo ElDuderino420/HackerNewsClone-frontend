@@ -1,40 +1,43 @@
 angular.module('haxorNews')
-.controller('loginCtrl', function($scope, $http, API_ENDPOINT, $location) {
+.controller('loginCtrl', function($scope, AuthService, $location) {
 
     $scope.user = {
         userName: '',
         password: ''
     };
-    $scope.userNameErr = {
-        status: false,
-        msg: ""
-    };
+    $scope.userNameErr = null;
     $scope.remNameErr = function () {
-        $scope.userNameErr.status = false;
+        $scope.userNameErr = null;
     }
     userNameSetErr = function (status) {
-        $scope.userNameErr.status = true;
         if (status == null|| status == 0) {
-            $scope.userNameErr.msg = "database crashed";
+            $scope.userNameErr = "database crashed";
         }
         if (status == 666) {
-            $scope.userNameErr.msg = "Username invalid or taken";
+            $scope.userNameErr = "Username invalid or taken";
         }
         if (status == 500) {
-            $scope.usernameErr.msg = "database error";
+            $scope.usernameErr = "database error";
         }
 
     }
     $scope.login = function () {
-        if(user.userName == "asd" || user.password == "asd"){
-        $http.post(API_ENDPOINT.url + "/api/user/login", $scope.user).then(function (result) {
-            console.log("login Succesful");
-            setCurrentUser($scope.user);
-            $location.path('/');
-        }, function (err) {
-            console.log(err)
-            userNameSetErr(err.status);
-
-        })}
-    };
+        AuthService.login($scope.user,function(result){
+            if(result == "err"){
+                console.log("login fix until backend fixed use {asd,asd}")
+                userNameSetErr(500)
+                console.log(result)
+            }
+            else if (result.status = 200) {
+                console.log("login succesful");
+                console.log(result)
+                $location.path('/profile/'+AuthService.currentUser());
+            }
+            else{
+                console.log("something went wrong")
+                userNameSetErr(result.status)
+                console.log(result)
+            }
+        })
+    }
 })

@@ -17,6 +17,7 @@
     <!-- custom scripts, controls asf. !-->
     
     <script src="js/mainScript.js"></script>
+    <script src="js/factory.js"></script>
     <script src="js/controllers/mainCtrl.js"></script>
     <script src="js/controllers/homeCtrl.js"></script>
     <script src="js/controllers/story_singleCtrl.js"></script>
@@ -58,14 +59,14 @@
             <ul class="navbar-nav col-lg-auto">
                 <li class="nav-item">
                 </li>
-                <li class="nav-item" ng-show="!currentUser">
+                <li class="nav-item" ng-show="!isLoggedIn">
                     <a class="nav-link" href="#login"><i class="fa fa-sign-in"></i> Login</a>
                 </li>
-                <li class="nav-item" ng-show="currentUser">
-                    <a class="nav-link" href="#profile/{{currentUser.displayName}}"><i class="fa fa-user"></i> My Profile</a>
+                <li class="nav-item" ng-show="isLoggedIn">
+                    <a class="nav-link" href="#profile/{{currentUser}}"><i class="fa fa-user"></i> My Profile</a>
                 </li>
-                <li class="nav-item" ng-show="currentUser">
-                    <a class="nav-link" href="#/"><i class="fa fa-sign-out"></i> Sign out</a>
+                <li class="nav-item" ng-show="isLoggedIn">
+                    <a class="nav-link" ng-click="logOut()" href="#/"><i class="fa fa-sign-out"></i> Sign out</a>
                 </li>
             </ul>
         </div>
@@ -77,11 +78,13 @@
     <footer class="footer">
             <div class="container">
               <span class="text-muted">
-                    <a href="#about"></i> About Us</a>
+                    <a href="#about"> About Us</a>
                      |  
                     <a href="#contact"> Contact</a>
                      |  
-                    <a href="#loanbroker7"></i> LoanBroker7 showcase</a>
+                    <a href="#loanbroker7"> LoanBroker7 showcase</a>
+                    |  
+                    <a>{{currentUser}}{{isLoggedIn}} </a>
               </span>
             </div>
           </footer>
