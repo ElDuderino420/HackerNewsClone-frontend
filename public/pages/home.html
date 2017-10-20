@@ -1,45 +1,39 @@
-<div class="card">
-    <div class="card-body">
-        <a href="#/">
-            <h4 class="card-title">Post Title</h4>
-        </a>
-        <p class="card-text">
-            Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to
-            build on the card title and make up the bulk of the card's content. Some quick example text to build on the card
-            title and make up the bulk of the card's content.
-        </p>
-        <a href="#/" class="card-link">Upvote</a>
-        <a href="#/" class="card-link">Comment</a>
-        <a href="#/" class="card-link">Flag</a>
+
+<p>{{types2}}</p>
+<div>
+        <label for="post_type">Showing: </label>
+        <select style="padding: 0 .75rem 0 .75rem" name="types" id="types" ng-model="types.chosen" ng-options="type for type in types.types" ng-change="changeSearch()">
+            <option ng-repeat="type in types2">{{type}}</option>
+        </select>
     </div>
-</div>
-<div class="card">
-    <div class="card-body">
-        <a href="#/">
-            <h4 class="card-title">Post Title</h4>
-        </a>
-        <p class="card-text">
-            Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to
-            build on the card title and make up the bulk of the card's content. Some quick example text to build on the card
-            title and make up the bulk of the card's content.
-        </p>
-        <a href="#/" class="card-link">Upvote</a>
-        <a href="#/" class="card-link">Comment</a>
-        <a href="#/" class="card-link">Flag</a>
+<div class="card" ng-repeat="st in stories">    
+          
+    <div ng-show="types.chosen != 'All Users'" class="card-body">
+        <div style="width:50px; float:left;">
+            <img id="{{'upvoteImg'+st.hanesst_id}}" alt="" src="./images/upvote_not.png" ng-click="upvote(st.hanesst_id)">
+            <div>{{getPostScore(st.post_upvotes,st.post_downvotes)}}</div>
+            <img id="{{'downvoteImg'+st.hanesst_id}}" alt="" src="./images/downvote_not.png" ng-click="downvote(st.hanesst_id)">
+        </div>
+        <div style="width:calc(100% - 50px)">
+            <a href="{{'#/story/'+st.hanesst_id}}">
+                <h4 class="card-title">{{st.post_title}}</h4>
+            </a>
+            <p class="card-text">
+                {{st.post_text}}
+            </p>
+            <a href="#/" class="card-link">Upvote</a>
+            <a href="#/" class="card-link">Comment</a>
+            <a href="#/" class="card-link">Flag</a>
+        </div>
     </div>
-</div>
-<div class="card">
-    <div class="card-body">
-        <a href="#/">
-            <h4 class="card-title">Post Title</h4>
-        </a>
-        <p class="card-text">
-            Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to
-            build on the card title and make up the bulk of the card's content. Some quick example text to build on the card
-            title and make up the bulk of the card's content.
-        </p>
-        <a href="#/" class="card-link">Upvote</a>
-        <a href="#/" class="card-link">Comment</a>
-        <a href="#/" class="card-link">Flag</a>
+    <div ng-show="types.chosen == 'All Users'" class="card-body">
+        <div>
+            <a href="{{'#/profile/'+st.user_name}}">
+                <h4 class="card-title">{{st.user_name}}</h4>
+            </a>
+        </div>
+        <div>
+            <p> Been a User since {{st.created_at}}</p>
+        </div>
     </div>
 </div>

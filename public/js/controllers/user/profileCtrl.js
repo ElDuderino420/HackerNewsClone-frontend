@@ -12,12 +12,25 @@ angular.module('haxorNews')
         $scope.profileKarma = res.karmaPoints;
     })
 
-    $(document).ready(function() {
-        $(".btn-pref .btn").click(function () {
-            $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
-            // $(".tab").addClass("active"); // instead of this do the below 
-            $(this).removeClass("btn-default").addClass("btn-primary");   
-        });
-        });
+   
+    var active = "tab1";    
+    $scope.setPrimary = function(id) {
+        console.log(id)
+        $("#"+active+"but").removeClass("btn-primary").addClass("btn-default");
+        document.getElementById(active).style.display = "none";
+        active = id
+        document.getElementById(active).style.display = "inline";
+        $("#"+active+"but").removeClass("btn-default").addClass("btn-primary");
+    }
+    AuthService.getUserStories($scope.profileUser, function(res){
+        if(res.status != null && res.status == 200){
+            $scope.profileStoryList = res.data
+        }else{
+            $scope.profileStoryList = []
+        }
+        console.log(res.data)
+    })
+
+    
 
 });

@@ -65,7 +65,6 @@ angular.module('haxorNews')
             },
             login: function (user, callback) {
                 //remove if when backend fixed;
-                if (user.userName == "asd" || user.password == "asd") {
                     $http.post(API_ENDPOINT.url + "/api/user/login", user).then(function (result) {
 
                         if (result != null) {
@@ -77,9 +76,6 @@ angular.module('haxorNews')
                             callback(err)
                         }
                     })
-                } else {
-                    callback("err")
-                }
             },
             getAllUsers: function (callback) {
                 $http.get(API_ENDPOINT.url + "/api/user/all").then(function (result) {
@@ -98,7 +94,7 @@ angular.module('haxorNews')
                 });
             },
             getSingleStory: function (storyId, callback) {
-                $http.get(API_ENDPOINT.url + "/api/post/:" + storyId).then(function (result) {
+                $http.get(API_ENDPOINT.url + "/api/post/" + storyId).then(function (result) {
                     if (result != null) {
                         callback(result)
                     }
@@ -109,7 +105,7 @@ angular.module('haxorNews')
                 })
             },
             getRecentStories: function (amount, callback) {
-                $http.get(API_ENDPOINT.url + "/api/post/newest/:" + amount).then(function (result) {
+                $http.get(API_ENDPOINT.url + "/api/post/newest/" + amount).then(function (result) {
                     if (result != null) {
                         callback(result)
                     }
@@ -120,7 +116,7 @@ angular.module('haxorNews')
                 })
             },
             getHighStories: function (amount, callback) {
-                $http.get(API_ENDPOINT.url + "/api/post/highest/:" + amount).then(function (result) {
+                $http.get(API_ENDPOINT.url + "/api/post/highest/" + amount).then(function (result) {
                     if (result != null) {
                         callback(result)
                     }
@@ -158,7 +154,7 @@ angular.module('haxorNews')
                 })
             },
             getUserStories: function (username, callback) {
-                $http.get(API_ENDPOINT.url + "api/post/all/:" + username).then(function (result) {
+                $http.get(API_ENDPOINT.url + "/api/post/all/" + username).then(function (result) {
                     if (result != null) {
                         callback(result)
                     }
@@ -174,7 +170,7 @@ angular.module('haxorNews')
                     new_post_title: newTitle,
                     new_post_text: newText
                 }
-                $http.get(API_ENDPOINT.url + "api/post/edit", temp).then(function (result) {
+                $http.get(API_ENDPOINT.url + "/api/post/edit", temp).then(function (result) {
                     if (result != null) {
                         callback(result)
                     }
@@ -185,7 +181,7 @@ angular.module('haxorNews')
                 })
             },
             upVote: function (storyId, callback) {
-                $http.put(API_ENDPOINT.url + "api/post/upvote", { hanesst_id: storyId }).then(function (result) {
+                $http.put(API_ENDPOINT.url + "/api/post/upvote", { hanesst_id: storyId }).then(function (result) {
                     if (result != null) {
                         callback(result)
                     }
@@ -196,7 +192,7 @@ angular.module('haxorNews')
                 })
             },
             downVote: function (storyId, callback) {
-                $http.put(API_ENDPOINT.url + "api/post/downvote", { hanesst_id: storyId }).then(function (result) {
+                $http.put(API_ENDPOINT.url + "/api/post/downvote", { hanesst_id: storyId }).then(function (result) {
                     if (result != null) {
                         callback(result)
                     }
@@ -207,7 +203,7 @@ angular.module('haxorNews')
                 })
             },
             flag: function (storyId, callback) {
-                $http.put(API_ENDPOINT.url + "api/post/flag", { hanesst_id: storyId }).then(function (result) {
+                $http.put(API_ENDPOINT.url + "/api/post/flag", { hanesst_id: storyId }).then(function (result) {
                     if (result != null) {
                         callback(result)
                     }
@@ -218,7 +214,7 @@ angular.module('haxorNews')
                 })
             },
             getStorykarma: function (storyId, callback) {
-                $http.get(API_ENDPOINT.url + "/api/post/karma/:" + storyId).then(function (result) {
+                $http.get(API_ENDPOINT.url + "/api/post/karma/" + storyId).then(function (result) {
                     if (result != null) {
                         callback(result)
                     }
