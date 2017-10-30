@@ -181,37 +181,61 @@ angular.module('haxorNews')
                 })
             },
             upVote: function (storyId, callback) {
+                var temp = { post_id: parseInt(storyId) };
+                if(currentUser.userName != "" && currentUser.userName != null){
                 $http.put(API_ENDPOINT.url + "/api/post/upvote", { post_id: storyId }).then(function (result) {
+                    console.log(temp)
                     if (result != null) {
                         callback(result)
                     }
                 }, function (err) {
+                    console.log(temp)
                     if (err != null) {
                         callback(err)
                     }
                 })
+            }else{
+                console.log("not logged in")
+                $location.path("/login")
+            }
             },
             downVote: function (storyId, callback) {
-                $http.put(API_ENDPOINT.url + "/api/post/downvote", { post_id: storyId }).then(function (result) {
+                var temp = { post_id: parseInt(storyId) };
+                if(currentUser.userName != "" && currentUser.userName != null){
+                $http.put(API_ENDPOINT.url + "/api/post/downvote", temp).then(function (result) {
+                    console.log(temp)
                     if (result != null) {
                         callback(result)
                     }
                 }, function (err) {
+                    console.log(temp)
                     if (err != null) {
                         callback(err)
                     }
                 })
+            }else{
+                console.log("not logged in")
+                $location.path("/login")
+            }
             },
             flag: function (storyId, callback) {
+                var temp = { post_id: parseInt(storyId) };
+                if(currentUser.userName != "" && currentUser.userName != null){
                 $http.put(API_ENDPOINT.url + "/api/post/flag", { post_id: storyId }).then(function (result) {
+                    console.log(temp)
                     if (result != null) {
                         callback(result)
                     }
                 }, function (err) {
+                    console.log(temp)
                     if (err != null) {
                         callback(err)
                     }
                 })
+            }else{
+                console.log("not logged in")
+                $location.path("/login")
+            }
             },
             getStorykarma: function (storyId, callback) {
                 $http.get(API_ENDPOINT.url + "/api/post/karma/" + storyId).then(function (result) {

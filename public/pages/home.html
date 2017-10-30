@@ -1,29 +1,41 @@
-
-<p>{{types2}}</p>
+<div class="home">
+<p>
+    {{types2}}</p>
 <div>
-        <label for="post_type">Showing: </label>
-        <select style="padding: 0 .75rem 0 .75rem" name="types" id="types" ng-model="types.chosen" ng-options="type for type in types.types" ng-change="changeSearch()">
-            <option ng-repeat="type in types2">{{type}}</option>
-        </select>
-    </div>
-<div class="card" ng-repeat="st in stories">    
-          
+    <label for="post_type">Showing: </label>
+    <select style="padding: 0 .75rem 0 .75rem" name="types" id="types" ng-model="types.chosen" ng-options="type for type in types.types"
+        ng-change="changeSearch()">
+        <option ng-repeat="type in types2">{{type}}</option>
+    </select>
+</div>
+<div class="card" ng-repeat="st in stories">
+
     <div ng-show="types.chosen != 'All Users'" class="card-body">
         <div style="width:50px; float:left;">
             <img id="{{'upvoteImg'+st.post_id}}" alt="" src="./images/upvote_not.png" ng-click="upvote(st.post_id)">
-            <div>{{getPostScore(st.post_upvotes,st.post_downvotes)}}</div>
+            <div>{{st.total_score}}</div>
             <img id="{{'downvoteImg'+st.post_id}}" alt="" src="./images/downvote_not.png" ng-click="downvote(st.post_id)">
         </div>
         <div style="width:calc(100% - 50px)">
-            <a href="{{'#/story/'+st.post_id}}">
-                <h4 class="card-title">{{st.post_title}}</h4>
-            </a>
-            <p class="card-text">
-                {{st.post_text}}
-            </p>
-            <a href="#/" class="card-link">Upvote</a>
-            <a href="#/" class="card-link">Comment</a>
-            <a href="#/" class="card-link">Flag</a>
+            <div style="display:inline-block">
+                <a href="{{'#/story/'+st.post_id}}" style="float:left">
+                    <h4 class="card-title">{{st.post_title}}</h4>
+                </a>
+                
+                    <i style="position: absolute; top: 0; right:0;" class="fa fa-flag-o" aria-hidden="true"></i>
+               
+            </div>
+            <div>
+                <div style="float:left;">
+                    <img id="{{'more'+st.post_id}}" alt="" src="./images/more.png" onmouseover="this.src='./images/more_over.png';" onmouseout="this.src='./images/more.png';"
+                        ng-click="more(st.post_id)">
+                    <img id="{{'close'+st.post_id}}" style="display:none;" alt="" src="./images/close.png" onmouseover="this.src='./images/close_over.png';"
+                        onmouseout="this.src='./images/close.png';" ng-click="close(st.post_id)">
+                </div>
+                <div class="card-text" id="{{'postText'+st.post_id}}" style="display:none;float:left;">
+                    {{st.post_text}}
+                </div>
+            </div>
         </div>
     </div>
     <div ng-show="types.chosen == 'All Users'" class="card-body">
@@ -36,4 +48,5 @@
             <p> Been a User since {{st.created_at}}</p>
         </div>
     </div>
+</div>
 </div>
