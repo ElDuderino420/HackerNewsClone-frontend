@@ -141,7 +141,7 @@ angular.module('haxorNews')
                 var temp = {
                     user_name: currentUser.userName,
                     password: currentUser.password,
-                    hanesst_id: storyId
+                    post_id: storyId
                 }
                 $http.delete(API_ENDPOINT.url + "/api/post", temp).then(function (result) {
                     if (result != null) {
@@ -166,7 +166,7 @@ angular.module('haxorNews')
             },
             editPost: function (storyId, newTitle, newText, callback) {
                 var temp = {
-                    hanesst_id: storyId,
+                    post_id: storyId,
                     new_post_title: newTitle,
                     new_post_text: newText
                 }
@@ -181,7 +181,7 @@ angular.module('haxorNews')
                 })
             },
             upVote: function (storyId, callback) {
-                $http.put(API_ENDPOINT.url + "/api/post/upvote", { hanesst_id: storyId }).then(function (result) {
+                $http.put(API_ENDPOINT.url + "/api/post/upvote", { post_id: storyId }).then(function (result) {
                     if (result != null) {
                         callback(result)
                     }
@@ -192,7 +192,7 @@ angular.module('haxorNews')
                 })
             },
             downVote: function (storyId, callback) {
-                $http.put(API_ENDPOINT.url + "/api/post/downvote", { hanesst_id: storyId }).then(function (result) {
+                $http.put(API_ENDPOINT.url + "/api/post/downvote", { post_id: storyId }).then(function (result) {
                     if (result != null) {
                         callback(result)
                     }
@@ -203,7 +203,7 @@ angular.module('haxorNews')
                 })
             },
             flag: function (storyId, callback) {
-                $http.put(API_ENDPOINT.url + "/api/post/flag", { hanesst_id: storyId }).then(function (result) {
+                $http.put(API_ENDPOINT.url + "/api/post/flag", { post_id: storyId }).then(function (result) {
                     if (result != null) {
                         callback(result)
                     }

@@ -10,12 +10,12 @@
           
     <div ng-show="types.chosen != 'All Users'" class="card-body">
         <div style="width:50px; float:left;">
-            <img id="{{'upvoteImg'+st.hanesst_id}}" alt="" src="./images/upvote_not.png" ng-click="upvote(st.hanesst_id)">
+            <img id="{{'upvoteImg'+st.post_id}}" alt="" src="./images/upvote_not.png" ng-click="upvote(st.post_id)">
             <div>{{getPostScore(st.post_upvotes,st.post_downvotes)}}</div>
-            <img id="{{'downvoteImg'+st.hanesst_id}}" alt="" src="./images/downvote_not.png" ng-click="downvote(st.hanesst_id)">
+            <img id="{{'downvoteImg'+st.post_id}}" alt="" src="./images/downvote_not.png" ng-click="downvote(st.post_id)">
         </div>
         <div style="width:calc(100% - 50px)">
-            <a href="{{'#/story/'+st.hanesst_id}}">
+            <a href="{{'#/story/'+st.post_id}}">
                 <h4 class="card-title">{{st.post_title}}</h4>
             </a>
             <p class="card-text">
