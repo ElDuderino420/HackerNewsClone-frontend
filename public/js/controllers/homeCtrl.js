@@ -5,6 +5,7 @@ angular.module('haxorNews')
             types: ["Most Recent Posts", "All Users", "Highest Score Posts"],
             chosen: "Most Recent Posts"
         };
+        $scope.tempScore = {};
 
 
         $scope.changeSearch = function () {
@@ -49,6 +50,32 @@ angular.module('haxorNews')
         }
         $scope.changeSearch();
 
+        $scope.printDate = function(date){
+            var time = new Date(date).toString();
+            return time.slice(0,time.indexOf(":")-3)
+        }
+        
+        var cur_date = new Date();
+        $scope.timeStamp = function(time){
+            var diff = cur_date - new Date(time);
+
+            if (diff < 60000) {
+            return " just now!" 
+            }
+            else if(diff >= 60000 && diff < 3600000){
+                return Math.floor(diff / 60000) + ' minutes ago' ;
+            }
+            else if(diff >= 3600000 && diff < 86400000){
+                return Math.floor(diff / 3600000) + ' hours ago' ;
+            }
+            else{
+                if(diff <=  172800000){
+                    return Math.floor(diff / 86400000) + ' day ago' ;
+                }
+                return Math.floor(diff / 86400000) + ' days ago' ;
+            }
+            //return cur_date - created;
+        }
 
 
         $scope.close = function (storyId) {
@@ -72,11 +99,28 @@ angular.module('haxorNews')
                 return (total).toString();
             }
         }
+        $scope.flag = function(storyId){
+            AuthService.flag(storyId, function (res) {
+                if (res.status == 200) {
+                    console.log("id: " + storyId + " was flagged!")
+                    
+                }
+                else {
+                    console.log("id: " + storyId + " was NOT flagged! something went wrong m8")
+                }
+            })
+        }
         $scope.upvote = function (storyId) {
             AuthService.upVote(storyId, function (res) {
                 if (res.status == 200) {
                     console.log("id: " + storyId + " was upvoted!")
                     document.getElementById("upvoteImg" + storyId).src = "./images/upvote.png";
+                    if($scope.tempScore[storyId.toString()] != null){
+                        $scope.tempScore[storyId.toString()] += 1
+                    }else{
+                        $scope.tempScore[storyId.toString()] = 1
+                    }
+                    console.log($scope.tempScore)
                 }
                 else {
                     console.log("id: " + storyId + " was NOT upvoted! something went wrong m8")
@@ -89,6 +133,12 @@ angular.module('haxorNews')
                 if (res.status == 200) {
                     console.log("id: " + storyId + " was downvoted!")
                     document.getElementById("downvoteImg" + storyId).src = "./images/downvote.png";
+                    if($scope.tempScore[storyId.toString()] != null){
+                        $scope.tempScore[storyId.toString()] += -1
+                    }else{
+                        $scope.tempScore[storyId.toString()] = -1
+                    }
+                    console.log($scope.tempScore)
                 }
                 else {
                     console.log("id: " + storyId + " was NOT downvoted! something went wrong m8")

@@ -29,25 +29,52 @@
         </button>
 
     </div>
-    <div class="well">
-        <div class="tab-content">
+</div>
+<div class="well">
+    <div class="tab-content">
 
-            <div class="tab-pane" id="tab1">
-                <div class="card" ng-repeat="st in profileStoryList">
+        <div class="tab-pane home" style="display:inline" id="tab1">
+            <div class="card" ng-repeat="st in stories">
 
-                    <div class="card-body">
+                <div class="card-body">
+                    <div class="vote">
+                        <img id="{{'upvoteImg'+st.post_id}}" alt="" src="./images/upvote_not.png" ng-click="upvote(st.post_id)">
+                        <div>{{st.total_score+tempScore[st.post_id.toString()]}}</div>
+                        <img id="{{'downvoteImg'+st.post_id}}" alt="" src="./images/downvote_not.png" ng-click="downvote(st.post_id)">
+                    </div>
+                    <div class="not_vote">
+                        <div class="title">
                             <a href="{{'#/story/'+st.post_id}}">
                                 <h4 class="card-title">{{st.post_title}}</h4>
                             </a>
+                            <i ng-click="flag(st.post_id)" class="fa fa-flag-o" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <div class="more_but">
+
+                                <img id="{{'more'+st.post_id}}" alt="" src="./images/more.png" onmouseover="this.src='./images/more_over.png';" onmouseout="this.src='./images/more.png';"
+                                    ng-click="more(st.post_id)">
+                                <img style="display:none;" id="{{'close'+st.post_id}}" alt="" src="./images/close.png" onmouseover="this.src='./images/close_over.png';"
+                                    onmouseout="this.src='./images/close.png';" ng-click="close(st.post_id)">
+                            </div>
+                            <div class="not_but">
+                                <p> submitted {{timeStamp(st.created_at)}} by
+                                    <a href="{{'#/profile/'+st.user_name}}">{{st.user_name}}</a>
+                                </p>
+                                <p>
+                                    <a href="{{'#/story/'+st.post_id}}">{{st.comments.length}} comments</a>
+                                </p>
+                            </div>
+                            <div class="card-text text-body" id="{{'postText'+st.post_id}}">
+                                {{st.post_text}}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="tab-pane" style="display:none" id="tab2">
-                <h3>This test2</h3>
-            </div>
+        </div>
+        <div class="tab-pane" style="display:none" id="tab2">
+            <h3>Placeholder for user details and stuff </h3>
         </div>
     </div>
-
-
-
 </div>
