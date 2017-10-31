@@ -134,6 +134,60 @@ html {
   border-radius: 0 .25rem 0 .25rem !important;
 }
 
+.home .selector{
+  padding: 0 .75rem 0 .75rem;
+}
+.home .card{
+  margin: 10px;
+}
+.home .vote{
+  width: 50px; 
+  float: left;
+}
+.home .not_vote{
+  width:calc(100% - 50px);
+}
+.home .title{
+  display:inline-block;
+}
+.home .title h4{
+  margin-bottom: 0px
+}
+.home .title a{
+  float:left;
+}
+.home .title i{
+  position: absolute; 
+  top: 0; 
+  right:0;
+}
+.home .not_vote .more_but{
+  float:left;
+  margin-right:5px;
+}
+.home .not_vote .more_but img{
+  width:30px;
+  height:30px;
+}
+.home .not_vote .not_but{
+  float:left;
+}
+.home .not_vote .not_but p{
+  margin-bottom:0; 
+  font-size:12px; 
+  height:15px
+}
+.home .not_vote .text-body{
+  width:100%;
+  display:none;
+  float:left;
+  border:1px solid;
+  padding:10px;
+  border-radius: 10px;
+  margin-top:10px;
+}
+
+
 
 
 

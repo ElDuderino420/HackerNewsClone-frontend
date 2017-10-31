@@ -65,17 +65,17 @@ angular.module('haxorNews')
             },
             login: function (user, callback) {
                 //remove if when backend fixed;
-                    $http.post(API_ENDPOINT.url + "/api/user/login", user).then(function (result) {
+                $http.post(API_ENDPOINT.url + "/api/user/login", user).then(function (result) {
 
-                        if (result != null) {
-                            currentUser = user
-                            callback(result)
-                        }
-                    }, function (err) {
-                        if (err != null) {
-                            callback(err)
-                        }
-                    })
+                    if (result != null) {
+                        currentUser = user
+                        callback(result)
+                    }
+                }, function (err) {
+                    if (err != null) {
+                        callback(err)
+                    }
+                })
             },
             getAllUsers: function (callback) {
                 $http.get(API_ENDPOINT.url + "/api/user/all").then(function (result) {
@@ -122,6 +122,7 @@ angular.module('haxorNews')
                     }
                 }, function (err) {
                     if (err != null) {
+                        console.log(err)
                         callback(err)
                     }
                 })
@@ -182,60 +183,57 @@ angular.module('haxorNews')
             },
             upVote: function (storyId, callback) {
                 var temp = { post_id: parseInt(storyId) };
-                if(currentUser.userName != "" && currentUser.userName != null){
-                $http.put(API_ENDPOINT.url + "/api/post/upvote", { post_id: storyId }).then(function (result) {
-                    console.log(temp)
-                    if (result != null) {
-                        callback(result)
-                    }
-                }, function (err) {
-                    console.log(temp)
-                    if (err != null) {
-                        callback(err)
-                    }
-                })
-            }else{
-                console.log("not logged in")
-                $location.path("/login")
-            }
+                console.log(temp)
+                if (currentUser.userName != "" && currentUser.userName != null) {
+                    $http.put(API_ENDPOINT.url + "/api/post/upvote", temp).then(function (result) {
+                        if (result != null) {
+                            callback(result)
+                        }
+                    }, function (err) {
+                        if (err != null) {
+                            callback(err)
+                        }
+                    })
+                } else {
+                    console.log("not logged in")
+                    $location.path("/login")
+                }
             },
             downVote: function (storyId, callback) {
                 var temp = { post_id: parseInt(storyId) };
-                if(currentUser.userName != "" && currentUser.userName != null){
-                $http.put(API_ENDPOINT.url + "/api/post/downvote", temp).then(function (result) {
-                    console.log(temp)
-                    if (result != null) {
-                        callback(result)
-                    }
-                }, function (err) {
-                    console.log(temp)
-                    if (err != null) {
-                        callback(err)
-                    }
-                })
-            }else{
-                console.log("not logged in")
-                $location.path("/login")
-            }
+                console.log(temp)
+                if (currentUser.userName != "" && currentUser.userName != null) {
+                    $http.put(API_ENDPOINT.url + "/api/post/downvote", temp).then(function (result) {
+                        if (result != null) {
+                            callback(result)
+                        }
+                    }, function (err) {
+                        if (err != null) {
+                            callback(err)
+                        }
+                    })
+                } else {
+                    console.log("not logged in")
+                    $location.path("/login")
+                }
             },
             flag: function (storyId, callback) {
                 var temp = { post_id: parseInt(storyId) };
-                if(currentUser.userName != "" && currentUser.userName != null){
-                $http.put(API_ENDPOINT.url + "/api/post/flag", { post_id: storyId }).then(function (result) {
-                    console.log(temp)
-                    if (result != null) {
-                        callback(result)
-                    }
-                }, function (err) {
-                    console.log(temp)
-                    if (err != null) {
-                        callback(err)
-                    }
-                })
-            }else{
-                console.log("not logged in")
-                $location.path("/login")
-            }
+                console.log(temp)
+                if (currentUser.userName != "" && currentUser.userName != null) {
+                    $http.put(API_ENDPOINT.url + "/api/post/flag", temp).then(function (result) {
+                        if (result != null) {
+                            callback(result)
+                        }
+                    }, function (err) {
+                        if (err != null) {
+                            callback(err)
+                        }
+                    })
+                } else {
+                    console.log("not logged in")
+                    $location.path("/login")
+                }
             },
             getStorykarma: function (storyId, callback) {
                 $http.get(API_ENDPOINT.url + "/api/post/karma/" + storyId).then(function (result) {
