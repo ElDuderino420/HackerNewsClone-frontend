@@ -12,7 +12,7 @@ angular.module('haxorNews')
             console.log($scope.types.chosen);
             switch ($scope.types.chosen) {
                 case "Highest Score Posts":
-                    AuthService.getHighStories(1, function (res) {
+                    AuthService.getHighStories(10, function (res) {
                         if (res.status != null && res.status == 200) {
                             $scope.stories = res.data;
                         } else {
