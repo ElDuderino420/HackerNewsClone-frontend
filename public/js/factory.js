@@ -246,5 +246,6 @@ angular.module('haxorNews')
                     }
                 })
             }
+            //comment: function ()
         }
     });

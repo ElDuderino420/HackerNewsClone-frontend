@@ -277,4 +277,51 @@ html {
   padding-bottom:30px;
 }
 
+.ss .sstitle{
+  text-align: center;
+  margin-bottom: 10px;
 
+}
+
+.ss .uarrow{
+  float:left;
+}
+
+
+.ss .darrow{
+  position: relative;
+  top: 29px;
+  float: left;
+  left: -32px;
+}
+
+.ss .ups{
+  position: relative;
+  float:left;
+  left: 3px;
+  top: -5.5px;
+}
+.ss .downs{
+  position: relative;
+  float:left;
+  left: -29px;
+  top: 22.5px;
+}
+
+.ss .vote{
+  float: left;
+  vertical-align: middle;
+}
+
+.ss .card{
+  top:8px;
+  vertical-align: middle
+}
+
+.ss .va{
+  vertical-align: middle;
+}
+
+.ss .jumbotron{
+    vertical-align: middle;
+}
