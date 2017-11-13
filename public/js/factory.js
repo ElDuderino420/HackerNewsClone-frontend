@@ -115,6 +115,18 @@ angular.module('haxorNews')
                     }
                 })
             },
+            getHanesstPosts: function (amount, callback) {
+                $http.get(API_ENDPOINT.url + "/api/post/hanesst/" + amount).then(function (result) {
+                    if (result != null) {
+                        callback(result)
+                    }
+                }, function (err) {
+                    if (err != null) {
+                        console.log(err)
+                        callback(err)
+                    }
+                })
+            },
             getHighStories: function (amount, callback) {
                 $http.get(API_ENDPOINT.url + "/api/post/highest/" + amount).then(function (result) {
                     if (result != null) {
