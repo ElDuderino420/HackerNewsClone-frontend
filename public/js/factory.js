@@ -126,7 +126,7 @@ angular.module('haxorNews')
                         callback(err)
                     }
                 })
-            },*/
+            },*/ 
             getHighStories: function (amount, callback) {
                 $http.get(API_ENDPOINT.url + "/api/post/highest/" + amount).then(function (result) {
                     if (result != null) {
