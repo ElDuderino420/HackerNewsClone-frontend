@@ -2,8 +2,8 @@ angular.module('haxorNews')
     .controller('homeCtrl', function ($scope, AuthService) {
 
         $scope.types = {
-            types: ["Most Recent Posts", "All Users", "Highest Score Posts"],
-            chosen: "Most Recent Posts"
+            types: ["Helges Hanesst Post","Most Recent Posts", "All Users", "Highest Score Posts"],
+            chosen: "Helges Hanesst Post"
         };
         $scope.tempScore = {};
 
@@ -11,6 +11,17 @@ angular.module('haxorNews')
         $scope.changeSearch = function () {
             console.log($scope.types.chosen);
             switch ($scope.types.chosen) {
+                case "Helges Hanesst Post":
+                /*AuthService.getHanesstPosts(10, function (res) {
+                    if (res.status != null && res.status == 200) {
+                        $scope.stories = res.data;
+                    } else {
+                        console.log("something wrong man...")
+                    }
+                    console.log(res.data);
+
+                })*/
+                break;
                 case "Highest Score Posts":
                     AuthService.getHighStories(10, function (res) {
                         if (res.status != null && res.status == 200) {
