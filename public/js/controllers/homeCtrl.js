@@ -7,7 +7,17 @@ angular.module('haxorNews')
         };
         $scope.tempScore = {};
 
-
+        function changeLoad(loadState){
+            if(loadState){
+                document.getElementById("loader_parent").style.display = "block"
+                document.getElementById("loading_done").style.display = "none"
+            }
+            else{
+                document.getElementById("loader_parent").style.display = "none"
+                document.getElementById("loading_done").style.display = "inline"
+            }
+        }
+    
         $scope.changeSearch = function () {
             console.log($scope.types.chosen);
             switch ($scope.types.chosen) {
@@ -23,8 +33,10 @@ angular.module('haxorNews')
                 })
                 break;*/
                 case "Highest Score Posts":
+                    changeLoad(true)
                     AuthService.getHighStories(10, function (res) {
                         if (res.status != null && res.status == 200) {
+                            changeLoad(false)
                             $scope.stories = res.data;
                         } else {
                             console.log("something wrong man...")
@@ -34,8 +46,10 @@ angular.module('haxorNews')
                     })
                     break;
                 case "Most Recent Posts":
+                changeLoad(true)
                     AuthService.getRecentStories(10, function (res) {
                         if (res.status != null && res.status == 200) {
+                            changeLoad(false)
                             $scope.stories = res.data;
                         } else {
                             console.log("something wrong man...")
@@ -44,8 +58,10 @@ angular.module('haxorNews')
                     })
                     break;
                 case "All Users":
+                changeLoad(true)
                     AuthService.getAllUsers(function (res) {
                         if (res.status != null && res.status == 200) {
+                            changeLoad(false)
                             $scope.stories = res.data;
                         } else {
                             console.log("something wrong man...")

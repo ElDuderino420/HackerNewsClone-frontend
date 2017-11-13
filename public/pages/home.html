@@ -3,52 +3,62 @@
         {{types2}}</p>
     <div>
         <label for="post_type">Showing: </label>
-        <select class="selector" name="types" id="types" ng-model="types.chosen" ng-options="type for type in types.types"
-            ng-change="changeSearch()">
+        <select class="selector" name="types" id="types" ng-model="types.chosen" ng-options="type for type in types.types" ng-change="changeSearch()">
             <option ng-repeat="type in types2">{{type}}</option>
         </select>
     </div>
-    <div  class="card" ng-repeat="st in stories">
+    <div id="loader_parent">
+        <div class="card loader" id="loading">
 
-        <div ng-show="types.chosen != 'All Users'" class="card-body">
-            <div class="vote">
-                <img id="{{'upvoteImg'+st.post_id}}" alt="" src="./images/upvote_not.png" ng-click="upvote(st.post_id)">
-                <div>{{st.total_score+tempScore[st.post_id.toString()]}}</div>
-                <img id="{{'downvoteImg'+st.post_id}}" alt="" src="./images/downvote_not.png" ng-click="downvote(st.post_id)">
+        </div>
+    </div>
+    <div id="loading_done">
+        <div class="card" ng-repeat="st in stories">
+
+            <div ng-show="types.chosen != 'All Users'" class="card-body">
+                <div class="vote">
+                    <img id="{{'upvoteImg'+st.post_id}}" alt="" src="./images/upvote_not.png" ng-click="upvote(st.post_id)">
+                    <div>{{st.total_score+tempScore[st.post_id.toString()]}}</div>
+                    <img id="{{'downvoteImg'+st.post_id}}" alt="" src="./images/downvote_not.png" ng-click="downvote(st.post_id)">
+                </div>
+                <div class="not_vote">
+                    <div class="title">
+                        <a href="{{'#/story/'+st.post_id}}">
+                            <h4 class="card-title">{{st.post_title}}</h4>
+                        </a>
+                        <i ng-click="flag(st.post_id)" class="fa fa-flag-o" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <div class="more_but">
+
+                            <img id="{{'more'+st.post_id}}" alt="" src="./images/more.png" onmouseover="this.src='./images/more_over.png';" onmouseout="this.src='./images/more.png';"
+                                ng-click="more(st.post_id)">
+                            <img style="display:none;" id="{{'close'+st.post_id}}" alt="" src="./images/close.png" onmouseover="this.src='./images/close_over.png';"
+                                onmouseout="this.src='./images/close.png';" ng-click="close(st.post_id)">
+                        </div>
+                        <div class="not_but">
+                            <p> submitted {{timeStamp(st.created_at)}} by
+                                <a href="{{'#/profile/'+st.user_name}}">{{st.user_name}}</a>
+                            </p>
+                            <p>
+                                <a href="{{'#/story/'+st.post_id}}">{{st.comments.length}} comments</a>
+                            </p>
+                        </div>
+                        <div class="card-text text-body" id="{{'postText'+st.post_id}}">
+                            {{st.post_text}}
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="not_vote" >
-                <div class="title" >
-                    <a href="{{'#/story/'+st.post_id}}" >
-                        <h4 class="card-title">{{st.post_title}}</h4>
+            <div ng-show="types.chosen == 'All Users'" class="card-body">
+                <div>
+                    <a href="{{'#/profile/'+st.user_name}}">
+                        <h4 class="card-title">{{st.user_name}}</h4>
                     </a>
-                    <i ng-click="flag(st.post_id)" class="fa fa-flag-o" aria-hidden="true"></i>
                 </div>
                 <div>
-                    <div class="more_but">
-
-                        <img id="{{'more'+st.post_id}}" alt="" src="./images/more.png" onmouseover="this.src='./images/more_over.png';"
-                            onmouseout="this.src='./images/more.png';" ng-click="more(st.post_id)">
-                        <img style="display:none;" id="{{'close'+st.post_id}}" alt="" src="./images/close.png" onmouseover="this.src='./images/close_over.png';"
-                            onmouseout="this.src='./images/close.png';" ng-click="close(st.post_id)">
-                    </div>
-                    <div class="not_but">
-                        <p> submitted {{timeStamp(st.created_at)}} by <a href="{{'#/profile/'+st.user_name}}">{{st.user_name}}</a></p>
-                        <p><a href="{{'#/story/'+st.post_id}}">{{st.comments.length}} comments</a></p>
-                    </div>
-                    <div  class="card-text text-body" id="{{'postText'+st.post_id}}" >
-                        {{st.post_text}}
-                    </div>
+                    <p> Has been a H4x0r since {{printDate(st.created_at)}} and has accumulated {{st.user_karma}} karma</p>
                 </div>
-            </div>
-        </div>
-        <div ng-show="types.chosen == 'All Users'" class="card-body">
-            <div>
-                <a href="{{'#/profile/'+st.user_name}}">
-                    <h4 class="card-title">{{st.user_name}}</h4>
-                </a>
-            </div>
-            <div>
-                <p> Has been a H4x0r since {{printDate(st.created_at)}} and has accumulated {{st.user_karma}} karma</p>
             </div>
         </div>
     </div>
