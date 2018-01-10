@@ -4,12 +4,12 @@
             {{post.post_title}}
         </h1>
         <div class="va">
-            <div class="vote">
+            <div class="vote" style="margin-right:5px;">
                 <img id="{{'upvoteImg'+post.post_id}}" alt="" src="./images/upvote_not.png" ng-click="upvote(post.post_id)">
                 <div>{{post.total_score+tempScore[post.post_id.toString()]}}</div>
                 <img id="{{'downvoteImg'+post.post_id}}" alt="" src="./images/downvote_not.png" ng-click="downvote(post.post_id)">
             </div>
-            <p class="card">{{post.post_text}}</p>
+            <div class="card" style="background-color:#e9ecef; padding-left:10px;top:25px;">{{post.post_text}} {{post.post_url}}</div>
 
         </div>
     </div>
@@ -32,27 +32,131 @@
                     <i ng-click="flag(com.post_id)" class="fa fa-flag-o" aria-hidden="true"></i>
                 </div>
                 <div>
-
                     <div style="display:inline-block;width:90%;min-width:200px" class="card-text" id="{{'postText'+com.post_id}}">
                         {{com.post_text}}
                     </div>
                 </div>
             </div>
+            <div class="card home" style="margin: 5px 5px 20px 5px" ng-repeat="com2 in com.comments">
+                <div class="card-body" style="padding:5px">
+                    <div class="vote" style="width:20px;">
+                        <img id="{{'upvoteImg'+com2.post_id}}" alt="" src="./images/upvote_not.png" ng-click="upvote(com2.post_id)">
+
+                        <img id="{{'downvoteImg'+com2.post_id}}" alt="" src="./images/downvote_not.png" ng-click="downvote(com2.post_id)">
+                    </div>
+                    <div class="not_vote">
+                        <div class="title" style="font-size:12px">
+                            <a href="{{'#/profile/'+com2.user_name}}">
+                                {{com2.user_name}}
+                            </a>
+                            <b style="float:left"> &nbsp;&nbsp;{{com2.total_score+tempScore[com2.post_id.toString()]}} points </b>
+                            <time style="float:left">&nbsp;&nbsp;&nbsp; &nbsp;{{timeStamp(com.created_at)}}&nbsp;&nbsp;&nbsp;&nbsp;</time>
+                            <a href="" style="color:blue" ng-click="reply(com2)">comment</a>
+                            <i ng-click="flag(com2.post_id)" class="fa fa-flag-o" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <div style="display:inline-block;width:90%;min-width:200px" class="card-text" id="{{'postText'+com2.post_id}}">
+                                {{com2.post_text}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card home" style="margin: 5px 5px 20px 5px" ng-repeat="com3 in com2.comments">
+                        <div class="card-body" style="padding:5px">
+                            <div class="vote" style="width:20px;">
+                                <img id="{{'upvoteImg'+com3.post_id}}" alt="" src="./images/upvote_not.png" ng-click="upvote(com3.post_id)">
+
+                                <img id="{{'downvoteImg'+com3.post_id}}" alt="" src="./images/downvote_not.png" ng-click="downvote(com3.post_id)">
+                            </div>
+                            <div class="not_vote">
+                                <div class="title" style="font-size:12px">
+                                    <a href="{{'#/profile/'+com3.user_name}}">
+                                        {{com3.user_name}}
+                                    </a>
+                                    <b style="float:left"> &nbsp;&nbsp;{{com3.total_score+tempScore[com3.post_id.toString()]}} points </b>
+                                    <time style="float:left">&nbsp;&nbsp;&nbsp; &nbsp;{{timeStamp(com.created_at)}}&nbsp;&nbsp;&nbsp;&nbsp;</time>
+                                    <a href="" style="color:blue" ng-click="reply(com3)">comment</a>
+                                    <i ng-click="flag(com3.post_id)" class="fa fa-flag-o" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <div style="display:inline-block;width:90%;min-width:200px" class="card-text" id="{{'postText'+com3.post_id}}">
+                                        {{com3.post_text}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card home" style="margin: 5px 5px 20px 5px" ng-repeat="com4 in com3.comments">
+                                <div class="card-body" style="padding:5px">
+                                    <div class="vote" style="width:20px;">
+                                        <img id="{{'upvoteImg'+com4.post_id}}" alt="" src="./images/upvote_not.png" ng-click="upvote(com4.post_id)">
+
+                                        <img id="{{'downvoteImg'+com4.post_id}}" alt="" src="./images/downvote_not.png" ng-click="downvote(com4.post_id)">
+                                    </div>
+                                    <div class="not_vote">
+                                        <div class="title" style="font-size:12px">
+                                            <a href="{{'#/profile/'+com4.user_name}}">
+                                                {{com4.user_name}}
+                                            </a>
+                                            <b style="float:left"> &nbsp;&nbsp;{{com4.total_score+tempScore[com4.post_id.toString()]}} points </b>
+                                            <time style="float:left">&nbsp;&nbsp;&nbsp; &nbsp;{{timeStamp(com.created_at)}}&nbsp;&nbsp;&nbsp;&nbsp;</time>
+                                            <a href="" style="color:blue" ng-click="reply(com4)">comment</a>
+                                            <i ng-click="flag(com4.post_id)" class="fa fa-flag-o" aria-hidden="true"></i>
+                                        </div>
+                                        <div>
+                                            <div style="display:inline-block;width:90%;min-width:200px" class="card-text" id="{{'postText'+com4.post_id}}">
+                                                {{com4.post_text}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card home" style="margin: 5px 5px 20px 5px" ng-repeat="com5 in com4.comments">
+                                        <div class="card-body" style="padding:5px">
+                                            <div class="vote" style="width:20px;">
+                                                <img id="{{'upvoteImg'+com5.post_id}}" alt="" src="./images/upvote_not.png" ng-click="upvote(com5.post_id)">
+
+                                                <img id="{{'downvoteImg'+com5.post_id}}" alt="" src="./images/downvote_not.png" ng-click="downvote(com5.post_id)">
+                                            </div>
+                                            <div class="not_vote">
+                                                <div class="title" style="font-size:12px">
+                                                    <a href="{{'#/profile/'+com5.user_name}}">
+                                                        {{com5.user_name}}
+                                                    </a>
+                                                    <b style="float:left"> &nbsp;&nbsp;{{com5.total_score+tempScore[com5.post_id.toString()]}} points
+                                                        </b>
+                                                    <time style="float:left">&nbsp;&nbsp;&nbsp; &nbsp;{{timeStamp(com.created_at)}}&nbsp;&nbsp;&nbsp;&nbsp;</time>
+                                                    <a href="" style="color:blue" ng-click="reply(com5)">comment</a>
+                                                    <i ng-click="flag(com5.post_id)" class="fa fa-flag-o" aria-hidden="true"></i>
+                                                </div>
+                                                <div>
+                                                    <div style="display:inline-block;width:90%;min-width:200px" class="card-text" id="{{'postText'+com5.post_id}}">
+                                                        {{com5.post_text}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     <div class="card" id="bottom">
         <div class="comment">
             <form name="form" ng-submit="comment(post.post_id)" role="form">
-                <div class="form-group" style="margin:5px"> 
+                <div class="form-group" style="margin:5px">
                     <label ng-show="replyComment==null" for="comment_text">So what do you want to comment?</label>
                     <div ng-show="replyComment!=null">
-                        <div><label for="comment_text">Commenting on:<a href="{{'#/profile/'+com.user_name}}">
-                            {{replyComment.user_name}}
-                        </a></label>
-                    </div>
+                        <div>
+                            <label for="comment_text">Commenting on:
+                                <a href="{{'#/profile/'+com.user_name}}">
+                                    {{replyComment.user_name}}
+                                </a>
+                            </label>
+                        </div>
                         {{replyComment.post_text}}
 
-                        
+
                     </div>
                     <textarea type="text" name="comment_text" id="comment_text" ng-model="newComment.post_text" class="form-control" required></textarea>
                 </div>
