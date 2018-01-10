@@ -21,6 +21,7 @@ angular.module('haxorNews')
 
         }
         $scope.register = function () {
+            console.log($scope.user)
             AuthService.register($scope.user,function(result){
                 if (result.status == 200) {
                     console.log("register succesful");

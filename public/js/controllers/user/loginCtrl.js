@@ -23,6 +23,7 @@ angular.module('haxorNews')
     }
     $scope.login = function () {
         AuthService.login($scope.user,function(result){
+            console.log($scope.user)
             if(result == "err"){
                 console.log("login fix until backend fixed use {asd,asd}")
                 userNameSetErr(500)

@@ -5,27 +5,62 @@
         </h1>
         <div class="va">
             <div class="vote">
-                <img class="uarrow" id="{{'upvoteImg'+post.post_id}}" alt="" src="./images/upvote_not.png" ng-click="upvote(post.post_id)">
-                <div class="ups">{{post.post_upvotes}}</div>
-                <img class="darrow" id="{{'downvoteImg'+post.post_id}}" alt="" src="./images/downvote_not.png" ng-click="downvote(post.post_id)">
-                <div class="downs">{{post.post_downvotes}}</div>
+                <img id="{{'upvoteImg'+post.post_id}}" alt="" src="./images/upvote_not.png" ng-click="upvote(post.post_id)">
+                <div>{{post.total_score+tempScore[post.post_id.toString()]}}</div>
+                <img id="{{'downvoteImg'+post.post_id}}" alt="" src="./images/downvote_not.png" ng-click="downvote(post.post_id)">
             </div>
             <p class="card">{{post.post_text}}</p>
 
         </div>
     </div>
-    <div class="card">
+
+    <div class="card home" style="margin-bottom:50px" ng-repeat="com in post.comments">
+        <div class="card-body" style="padding:5px">
+            <div class="vote" style="width:20px;">
+                <img id="{{'upvoteImg'+com.post_id}}" alt="" src="./images/upvote_not.png" ng-click="upvote(com.post_id)">
+
+                <img id="{{'downvoteImg'+com.post_id}}" alt="" src="./images/downvote_not.png" ng-click="downvote(com.post_id)">
+            </div>
+            <div class="not_vote">
+                <div class="title" style="font-size:12px">
+                    <a href="{{'#/profile/'+com.user_name}}">
+                        {{com.user_name}}
+                    </a>
+                    <b style="float:left"> &nbsp;&nbsp;{{com.total_score+tempScore[com.post_id.toString()]}} points </b>
+                    <time style="float:left">&nbsp;&nbsp;&nbsp; &nbsp;{{timeStamp(com.created_at)}}&nbsp;&nbsp;&nbsp;&nbsp;</time>
+                    <a href="" style="color:blue" ng-click="reply(com)">comment</a>
+                    <i ng-click="flag(com.post_id)" class="fa fa-flag-o" aria-hidden="true"></i>
+                </div>
+                <div>
+
+                    <div style="display:inline-block;width:90%;min-width:200px" class="card-text" id="{{'postText'+com.post_id}}">
+                        {{com.post_text}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card" id="bottom">
         <div class="comment">
-                <form name="form" ng-submit="comment(post.post_id)" role="form">
-                        <div class="form-group">
-                            <label for="comment_text">Tell me what you thought!</label>
-                            <textarea type="text" name="comment_text" id="comment_text" ng-model="newComment.post_text" class="form-control" required ></textarea>
-                        </div>
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-primary">Add Comment</button>
-                            <a href="#/" class="btn btn-link">Cancel</a>
-                        </div>
-                    </form>
+            <form name="form" ng-submit="comment(post.post_id)" role="form">
+                <div class="form-group" style="margin:5px"> 
+                    <label ng-show="replyComment==null" for="comment_text">So what do you want to comment?</label>
+                    <div ng-show="replyComment!=null">
+                        <div><label for="comment_text">Commenting on:<a href="{{'#/profile/'+com.user_name}}">
+                            {{replyComment.user_name}}
+                        </a></label>
+                    </div>
+                        {{replyComment.post_text}}
+
+                        
+                    </div>
+                    <textarea type="text" name="comment_text" id="comment_text" ng-model="newComment.post_text" class="form-control" required></textarea>
+                </div>
+                <div class="form-actions">
+                    <button id="button" type="submit" class="btn btn-primary">Add Comment</button>
+                    <a href="" ng-click="replyReset()" class="btn btn-link">Cancel</a>
+                </div>
+            </form>
         </div>
     </div>
 </div>

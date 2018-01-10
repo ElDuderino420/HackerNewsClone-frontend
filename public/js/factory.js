@@ -14,7 +14,7 @@ angular.module('haxorNews')
                 if (currentUser != {}) {
                     return currentUser.userName;
                 } else {
-                    return "derp";
+                    return "NaN";
                 }
 
             },
